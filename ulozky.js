@@ -79,7 +79,7 @@ function poleNkratM(m, n) {
     return pole;
 }
 // 5.4. Ověř funkčnost výpisem na konzoli
-console.log(poleNkratM(3, 5));
+//console.log(poleNkratM(3, 5));
 
 
 // 6. Doplnit funkce odecist(a, b), nasobit(a, b), delit(a, b)
@@ -99,15 +99,32 @@ function delit(a, b) {
 // 7.1. Proměnná a, b, operace
 a = 5
 b = 10
-const operace = "+"; // "-", "*", "/"
 
+function kalkulacka(operace, a, b) {
+    if (operace === "+") {
+        console.log(secist(a, b))
+    } else if (operace === "-") {
+        console.log(odecist(a, b))
+    } else if (operace === "*") {
+        console.log(nasobit(a, b))
+    } else if (operace === "/") {
+        console.log(delit(a, b))
+    } else {
+        console.log("zadali jste spatne znamenko!")
+    }
+}
 // 7.2.1. Pokud operace == "+", zavole secist()
+
 // 7.2.2. Pokud operace == "-", zavole odecist()
+
 // 7.2.3. Pokud operace == "/", zavole nasobit()
+
 // 7.2.4. Pokud operace == "*", zavole delit()
 
 // 7.3. Vytvořit funkci kalkulacka(operace, a, b)
-kalkulacka("+", 5, 10) === 15
-kalkulacka("-", 5, 10) === -5
-kalkulacka("*", 5, 10) === 50
-kalkulacka("/", 5, 10) === .5
+// kalkulacka("+", 5, 10) === 15
+// kalkulacka("-", 5, 10) === -5
+// kalkulacka("*", 5, 10) === 50
+// kalkulacka("/", 5, 10) === .5
+
+kalkulacka("+", 400, 10)
