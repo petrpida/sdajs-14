@@ -11,3 +11,4 @@
         "express-oas-generator": "^1.0.41",
         "node-fetch": "^3.0.0"
     }
+}
