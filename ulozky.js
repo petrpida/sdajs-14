@@ -128,3 +128,74 @@ function kalkulacka(operace, a, b) {
 // kalkulacka("/", 5, 10) === .5
 
 kalkulacka("+", 400, 10)
+
+// Opakovací úkoly:
+// Máme-li seznam objektů ([ {key: "a"}, {key: "b"}, {key: "c"} ]), jak z nich vytáhnout 
+// hodnoty z klíče key a vytvořit seznam ["a", "b", "c"] ?
+const seznam = [
+    {key: "a"},
+    {key: "b"},
+    {key: "c"}
+]
+const novySeznam = seznam.map(el => el.key)
+console.log(novySeznam)
+// Varianta 1: máme-li seznam uživatelů [ { name: "Adam", address: { city: "Brno } }, ... ] , 
+// jak z něj vytvořit seznam měst?
+const uzivatele = [
+    {name: "Adam", address: {city: "Brno"}},
+    {name: "Jan", address: {city: "Plzen"}},
+    {name: "Pavel", address: {city: "Znojmo"}},
+]
+const mesta = uzivatele.map(el => el.address.city)
+console.log(mesta)
+// Varianta 2: máme-li objekt uživatelů, kde každý uživatel je označený svým ID 
+//{ 1: {name: "Adam"}, 2: {name: "Eva"} } , jak z objektu vytvořit seznam jmen ["Adam", "Eva?] ?
+const users = { 1: {name: "Adam"}, 2: {name: "Eva"}, 3: {name: "Pavel"}}
+const usersName = Object.values(users)
+console.log(usersName.map(el => el.name))
+
+//Opakovací úlohy 2:
+//Vytvořte funkci hello(name), která dostane jméno a vrátí řetězec "Hello, [name]!"
+function hello(anyName) {
+    console.log("Hello, " + anyName + "!")
+}
+hello("Petr")
+//Vytvořte třídu Person, která bude v konstruktoru mít jedinou vlastnost/atribut name
+//Do třídy přidejte metodu "greet()", která vrátí řetězec "Hello, [name]!", 
+//přičemž name bude jméno osoby předané v konstruktoru
+class Person {
+    constructor(name) {
+        this.name = name
+    }
+
+    greet() {
+        return "Hello, " + this.name + "!"
+    }
+}
+
+let person1 = new Person ("Josef")
+console.log(person1.greet())
+
+//Opakovací úkoly 3 - v skriptu napojeném na HTML dokument:
+//Vytvořte proměnnou counter a tlačítko s nápisem "+1" a ID counterAdd
+let counter = 0;
+
+const body = document.querySelector("body")
+const btn = document.createElement("button")
+btn.setAttribute("id", "counterAdd")
+btn.textContent = "+1"
+body.appendChild(btn)
+
+//Přidejte div s ID counterText. Po stisknutí tlačítka a zvětšení proměnné counter 
+//vypište její hodnotu jako text do tohoto divu
+const div = document.createElement("div")
+div.setAttribute("id", "counterText")
+//div.textContent = counter
+body.appendChild(div)
+
+//Napojte tlačítko tak, že se po jeho stisknutí zvětší proměnná counter o 1.
+btn.addEventListener("click", (event) => {
+    //event.preventDefault()
+    counter = counter + 1
+    div.textContent = counter
+})
