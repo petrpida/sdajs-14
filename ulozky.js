@@ -127,7 +127,7 @@ function kalkulacka(operace, a, b) {
 // kalkulacka("*", 5, 10) === 50
 // kalkulacka("/", 5, 10) === .5
 
-kalkulacka("+", 400, 10)
+kalkulacka("/", 5, 10)
 
 // Opakovací úkoly:
 // Máme-li seznam objektů ([ {key: "a"}, {key: "b"}, {key: "c"} ]), jak z nich vytáhnout 
@@ -139,27 +139,73 @@ const seznam = [
 ]
 const novySeznam = seznam.map(el => el.key)
 console.log(novySeznam)
+
+const numberObjs = [
+    { left: 5, right: 10 },
+    { left: 0, right: 0 },
+    { left: 8, right: 3 },
+]
+const sumLeft = numberObjs.map(x => x.left)
+console.log(sumLeft)
+const sumRight = numberObjs.map(x => x.right)
+console.log(sumRight)
+
+const sum = numberObjs.map(x => x.left + x.right)
+console.log(sum)
+
+const sum1 = []
+numberObjs.forEach(element => {
+    sum1.push(element.left + element.right)
+});
+console.log(sum1)
 // Varianta 1: máme-li seznam uživatelů [ { name: "Adam", address: { city: "Brno } }, ... ] , 
 // jak z něj vytvořit seznam měst?
 const uzivatele = [
-    {name: "Adam", address: {city: "Brno"}},
-    {name: "Jan", address: {city: "Plzen"}},
-    {name: "Pavel", address: {city: "Znojmo"}},
+    {name: "Adam", surname: "Ondra", address: {city: "Brno"}},
+    {name: "Jan", surname: "Novotny", address: {city: "Plzen"}},
+    {name: "Pavel", surname: "Svoboda", address: {city: "Znojmo"}},
 ]
 const mesta = uzivatele.map(el => el.address.city)
 console.log(mesta)
 // Varianta 2: máme-li objekt uživatelů, kde každý uživatel je označený svým ID 
 //{ 1: {name: "Adam"}, 2: {name: "Eva"} } , jak z objektu vytvořit seznam jmen ["Adam", "Eva?] ?
-const users = { 1: {name: "Adam"}, 2: {name: "Eva"}, 3: {name: "Pavel"}}
+const users = { 1: {name: "Adam", surname: "Ondra"}, 2: {name: "Eva", surname: "Brzobohata"}, 3: {name: "Pavel", surname: "Novak"}}
 const usersName = Object.values(users)
 console.log(usersName.map(el => el.name))
+console.log(usersName.map(el => el.surname))
+console.log(usersName.map(el => el.name + " " + el.surname))
+
+// 9. Funkce, listy, objekty
+//   {name: "A", surname: "B"} => "A B"
+// 9.1 Vytvořte funkci, která z objektu uživatele vrátí jeho celé jméno
+const user1 = {name: "Jan", surname: "Novak"}
+function celeJmenoObj(obj) {
+    return obj.name + " " + obj.surname
+}
+
+console.log(celeJmenoObj(user1))
+// 9.2 Vytvořte funkci, která ze seznamu uživatelů vrátí jejich celá jména
+function celeJmenoArray(array) {
+    return array.map(x => x.name + " " + x.surname)
+}
+console.log(celeJmenoArray(uzivatele))
+// 9.3 Vytvořte funkci, která z objektu id:uživatel vrátí celá jména
+function celeJmenoObjId(obj) {
+    return Object.values(obj).map(x => [x.name + " " + x.surname])
+    //const objToArray = Object.values(obj)
+    //console.log(objToArray)
+    //objToArray.map(x => x.name + " " + x.surname)
+}
+console.log(celeJmenoObjId(users))
+// 9.4 Bonus: Vytvořte funkci, která z objektu id:uživatel vrátí objekt id:"celé jméno"
+
 
 //Opakovací úlohy 2:
 //Vytvořte funkci hello(name), která dostane jméno a vrátí řetězec "Hello, [name]!"
 function hello(anyName) {
     console.log("Hello, " + anyName + "!")
 }
-hello("Petr")
+hello("Joe")
 //Vytvořte třídu Person, která bude v konstruktoru mít jedinou vlastnost/atribut name
 //Do třídy přidejte metodu "greet()", která vrátí řetězec "Hello, [name]!", 
 //přičemž name bude jméno osoby předané v konstruktoru
@@ -173,8 +219,38 @@ class Person {
     }
 }
 
-let person1 = new Person ("Josef")
+let person1 = new Person ("John")
+console.log(person1)
 console.log(person1.greet())
+
+// 11. Dveře, otevřené/zavřené, barva ("řetězec")
+// 11.1. Vytvořte třídu Dvere, která v konstruktoru dostane `barva`, `otevrene` (boolean, stav dveří)
+class Dvere {
+    constructor(barva, otevrene) {
+        this.barva = barva,
+        this.otevrene = otevrene
+    }
+
+    otevri() {
+        this.otevrene = true
+    }
+    zavri() {
+        this.otevrene = false
+    }
+
+    get popis() {
+        return "tyto dvere maji " + this.barva + " barvu a jsou " + (this.otevrene ? "otevrene" : "zavrene")}
+}
+
+const dvere1 = new Dvere ("cerne", true)
+console.log(dvere1.popis)
+dvere1.zavri()
+console.log(dvere1.popis)
+console.log(dvere1)
+
+// 11.2. Pridejte metodu otevri(), která nastaví `otevrene`
+// 11.3. Pridejte metodu zavri(), která nastaví `otevrene` na false
+// 11.4. Pridejte getter popis(), který popiše dveře, jejich barvu a stav
 
 //Opakovací úkoly 3 - v skriptu napojeném na HTML dokument:
 //Vytvořte proměnnou counter a tlačítko s nápisem "+1" a ID counterAdd
