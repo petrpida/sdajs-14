@@ -227,7 +227,7 @@ console.log(person1.greet())
 // 11.1. Vytvořte třídu Dvere, která v konstruktoru dostane `barva`, `otevrene` (boolean, stav dveří)
 class Dvere {
     constructor(barva, otevrene) {
-        this.barva = barva,
+        this.barva = barva
         this.otevrene = otevrene
     }
 
@@ -275,3 +275,224 @@ btn.addEventListener("click", (event) => {
     counter = counter + 1
     div.textContent = counter
 })
+
+// 14. Object/dict + funkce
+// 14.1. Vytvoř objekt databazeUzivatelu
+//       { 1: { name: "Eva", surname: "Nová" }, 2: { name: "Jirka", surname: "Nový" } }
+// 14.2. Vytvoř funkci najdiNejvetsiIdUzivatele()
+
+
+let databazeUzivatelu = { 1: { name: "Eva", surname: "Nová" }, 2: { name: "Jirka", surname: "Nový" } }
+
+function najdiNejvetsiId(databazeUzivatelu) {
+    let ids = Object.keys(databazeUzivatelu)
+    console.log(ids)
+    const idsSorted = ids.sort((a,b) => a - b)
+    console.log(idsSorted)
+    console.log(idsSorted[idsSorted.length-1])
+    return idsSorted[idsSorted.length-1]
+}
+najdiNejvetsiId(databazeUzivatelu)
+
+// const obj = {
+//     1: {name: "Eva", surname:"Nová"},
+//     2: {name: "Jirka", surname: "Nový" }
+// }
+// function najdiNejvetsiIdUzivatele(objekty) {
+//     let maximum = Number.MIN_VALUE
+//     const kluce = Object.keys(objekty)
+//     kluce.forEach(obj => {
+//         if (obj > maximum) {
+//             maximum = obj
+//         }
+//     });
+//         return maximum
+// }
+// const vysledok = najdiNejvetsiIdUzivatele(obj);
+// console.log(vysledok);
+
+// 14.3. Vytvoř funkci vytvorUzivatele(jmeno, prijmeni) (adresa = objekt),
+//       která přidá záznam do databazeUzivatelu s ID o jedna větším než najdiNejvetsiIdUzivatele()
+// 14.4. Vytvoř funkci odstranUzivatele(id), která z databazeUzivatelu odstrani tohoto uzivatele
+
+function vytvorUzivatele(jmeno, prijmeni) {
+    const uziv = {name: jmeno, surnam: prijmeni}
+    const nejvetsiId = najdiNejvetsiId(databazeUzivatelu)
+    console.log(nejvetsiId)
+    console.log(databazeUzivatelu[parseInt(nejvetsiId, 10) + 1] = uziv)
+}
+
+vytvorUzivatele("Jan", "Novak")
+
+console.log(databazeUzivatelu)
+
+function odstranUzivateleId(id) {
+    delete databazeUzivatelu[id]
+} 
+
+odstranUzivateleId(3)
+
+console.log(databazeUzivatelu)
+
+
+
+
+// ulohy
+
+function test(a, b, c) {
+   console.log("a is: " + a + " b is: " + b + " c is: " + c)
+}
+
+test("a", 8, {})
+
+function giveMe42() {
+    return 42
+}
+
+const cislo42 = giveMe42()
+console.log(cislo42)
+
+let obj1 = {
+    name: "Jan",
+    surname: "Novak"
+}
+console.log(obj1)
+
+obj1.age = 35
+console.log(obj1)
+
+delete obj1.age
+console.log(obj1)
+
+let numbers = [2, 3, 6, 92, 55]
+console.log(numbers.filter(x => x % 2 == 0))
+
+
+let dalsiObjekt = {
+    id: 1,
+    name: "Jan",
+    surname: "Novak",
+    age: 52
+}
+console.log(dalsiObjekt)
+console.log(Object.keys(dalsiObjekt))
+console.log(Object.values(dalsiObjekt))
+
+let retezec = "ahoj"
+let dvakratRetezec = retezec + " " + retezec
+console.log(dvakratRetezec)
+console.log(dvakratRetezec.length)
+
+function pridejJedna(n) {
+    return n + 1
+}
+console.log(pridejJedna(4))
+
+function jeVetsiNezPet(m) {
+    return m > 5
+}
+
+console.log(jeVetsiNezPet(10))
+console.log(jeVetsiNezPet(4))
+
+function zvetsiPole(pole) {
+    return pole.concat([5, 6, 7])
+}
+
+console.log(zvetsiPole(numbers))
+
+let num = 0;
+let num1 = num + 5;
+console.log(num)
+console.log(num1)
+
+let str = "ahoj"
+let str1 = str + "!!!"
+console.log(str)
+console.log(str1)
+
+let obj10 = {
+    klic: "hodnota"
+}
+console.log(Object.values(obj10))
+obj10.klic2 = "hodnota2"
+console.log(obj10)
+
+const pole10 = [1, 2, 3]
+console.log(pole10[1])
+
+function test2(a, b, c) {
+    return b + 5
+}
+console.log(test2("", 0, {}))
+console.log(test2("1", "2", "3"))
+
+class Clovek {
+    constructor(name) {
+        this.name = name
+    }
+}
+
+const clovek1 = new Clovek ("Honza")
+console.log(clovek1)
+
+function test3() {
+    function test4() {
+        return 5
+    }
+    return test4()
+}
+let vysledek = test3()
+console.log(vysledek)
+
+// Bleskové úlohy 3
+// 17.1. Vytvoř pole o pěti prvcích, vypiš z něj pátý.
+const pole5 = [1, 2, 3, 4, 5]
+console.log(pole5[4])
+
+// 17.2. Vytvoř řetězec o alespoň 5 znacích, vypiš z něj první znak.
+let str5 = "nazdar"
+console.log(str5.at(0))
+
+// 17.3. Vytvoř objekt uživetele s dvěmi klíči (name, surname). Vypiš celé jméno uživatele.
+const objekt2 = {
+    name: "Jan",
+    surname: "Novotny"
+}
+console.log(objekt2.name + " " + objekt2.surname)
+// 17.4. Definuj funkci se třemi argumenty (třemi objekty), vypiš v ní třetí argument. Zavolej ji.
+function test5(a, b, c) {
+    return c
+}
+console.log(test5({}, {}, {}))
+// 17.5. Vytvoř funkci o jednom argumentu (řetězci), která vrátí tento řetězec dvakrát. Zavolej ji.
+function test6(a) {
+    return a + a
+}
+console.log(test6("cus"))
+// 17.6. Vytvoř funkci o jednou argumentu (objektu), která vrátí všechny klíče tohoto objektu. Zavolej ji.
+function test7(a) {
+    return Object.keys(a)
+}
+console.log(test7(databazeUzivatelu))
+// 17.7. Definuj funkci bez argumentů, která vrátí libovolný objekt.
+//       Zavolej ji, ulož výsledek do proměnné a vypiš hodnotu libovolného klíče.
+function test8() {
+    return databazeUzivatelu
+}
+let result = test8()
+console.log(result[1])
+// 17.8. Vytvoř pole nějakých čísel, jedním řádkem kódu z něj vyfiltruj lichá čísla, výsledek vypiš.
+let poleCisel = [0, 1, 2, 3, 4, 5, 6, 7]
+
+console.log(poleCisel.filter(x => x % 2 ===1))
+
+
+
+
+
+
+function bonus(func) {
+    return func
+}
+console.log(bonus(secist(1,1)))
